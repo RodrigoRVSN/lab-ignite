@@ -1,15 +1,16 @@
 import { UseGuards } from '@nestjs/common';
 import { Query, Resolver } from '@nestjs/graphql';
 import { PrismaService } from 'src/database/prisma/prisma.service';
-import { AuthorizationGuard } from './auth/authorization.guard';
+import { AuthorizationGuard } from 'src/http/auth/authorization.guard';
+import { Product } from '../models/product';
 
 @Resolver()
-export class TestResolver {
+export class ProductsResolver {
   constructor(private prisma: PrismaService) {}
 
-  @Query(() => String)
+  @Query(() => [Product])
   @UseGuards(AuthorizationGuard)
-  hello() {
-    return 'hello world';
+  products() {
+    return this.prisma.product.findMany();
   }
 }

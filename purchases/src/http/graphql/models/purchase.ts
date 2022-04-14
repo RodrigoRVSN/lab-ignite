@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType, registerEnumType } from '@nestjs/graphql';
+import { Product } from './product';
 
 enum PurchaseStatus {
   PENDING = 'PENDING',
@@ -12,7 +13,7 @@ registerEnumType(PurchaseStatus, {
 });
 
 @ObjectType()
-export class Product {
+export class Purchase {
   @Field(() => ID)
   id: string;
 
@@ -21,4 +22,9 @@ export class Product {
 
   @Field(() => Date)
   createdAt: Date;
+
+  @Field(() => Product)
+  product: Product;
+
+  productId: string;
 }

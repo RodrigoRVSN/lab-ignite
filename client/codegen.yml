@@ -2,6 +2,8 @@ overwrite: true
 
 schema: 'http://localhost:3332/graphql'
 
+
+
 generates:
   src/graphql/generated/graphql.tsx:
     documents: './src/graphql/**/*.graphql'
@@ -18,7 +20,7 @@ generates:
       documentMode: graphQLTag
 
   src/graphql/generated/page.tsx:
-    documents: './src/graphql/**/*.graphql'
+    documents: './src/graphql/private/**/*.graphql'
     config:
       documentMode: external
       importDocumentNodeExternallyFrom: ./graphql
@@ -34,7 +36,7 @@ generates:
       - 'graphql-codegen-apollo-next-ssr'
 
   src/graphql/generated/pagePublic.tsx:
-    documents: './src/graphql/**/*.graphql'
+    documents: './src/graphql/public/**/*.graphql'
     config:
       documentMode: external
       importDocumentNodeExternallyFrom: ./graphql
